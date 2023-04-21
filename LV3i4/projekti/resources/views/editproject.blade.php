@@ -5,6 +5,9 @@
 <html lang="en">
     <head>
         <title>Edit project</title>
+        <style>
+
+        </style>
     </head>
     <body>
         <div class="container"> 
@@ -12,6 +15,7 @@
                 <div class="card">
                     <div class="card-header">Edit project {{$project->name}}</div>
                     <div class="card-body">
+                    <table><tr>
                         <form method="POST" action="{{ route('saveproject', $project->id) }}">
                         @csrf
                         <input type="hidden" name="_method" value="PUT">
@@ -43,12 +47,24 @@
                                 <input  class="form-control" type="text" name="enddate" id="enddate" value="{{$project->end_date}}"  required>
                             </div>
                         @endif
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-right:50px">Save</button> 
                         </form>
+                        <tr>
+                        @if($project->leader == Auth::user()->getId())
+                        <form action="{{{ route('deleteproject', $project->id)}}}" method="POST">
+                        @csrf
+                        @method('put')
+                            <button class="btn btn-danger" type="submit" style="margin-right:50px">Remove</button>
+                        </form>
+                        
+                        <form action="{{{ route('projects')}}}" method="GET">
+                        @csrf
+                            <button class="btn btn-danger" type="submit" style="margin-right:50px">Cancel</button>
+                        </form>
+</tr>
+</tr>
+                        @endif
+                        </table>
                     </div>
                 </div>
             </div>

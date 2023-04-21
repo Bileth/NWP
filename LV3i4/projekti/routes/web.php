@@ -56,6 +56,14 @@ Route::put('/saveproject/{project_id?}', function (Request $request, $project_id
     return redirect('/projects');
 })->name('saveproject');
 
+/** delete edited project */
+Route::put('/deleteproject/{project_id?}', function (Request $request, $project_id = null) {
+	$project = Project::find($project_id);
+	$project->delete();
+	//DB::delete('delete from projects where project_id = ?', [$project_id]);
+    return redirect('/projects');
+})->name('deleteproject');
+
 /** Users screen (for adding user to project) */
 Route::get('/users/{project_id?}', function($project_id = null) {
     $users = User::orderBy('created_at', 'asc')->get();
