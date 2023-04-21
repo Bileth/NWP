@@ -4,30 +4,10 @@
 <html lang="en">
     <head>
         <title>All projects</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            .container {                
-                width: 100vw;
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .justify-content-center {
-                width: 800px;
-            }
-            .link {
-                color: black !important;
-                text-decoration: underline;
-            }
-            .link:hover {
-                color: #007bff !important;
-            }
-        </style>
     </head>
     <body>
         <div class="container">
-            @if(count($projects) > 0)
+            @if(count((array)$projects) > 0)
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
                         <th>ID</th>
@@ -58,8 +38,14 @@
                         @endforeach
                     </tbody>
                 </table>
-                @else 
+                <div class="card">
+                    <a class="btn btn-primary" href="{{ route('newproject') }}">Create project.</a>                      
+                </div>
+            @else 
                 No projects.
+                <div class="card">
+                    <a class="btn btn-primary" href="{{ route('newproject') }}">Create project.</a>                      
+                </div>
             @endif
         </div>
     </body>

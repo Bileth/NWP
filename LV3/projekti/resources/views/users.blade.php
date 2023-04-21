@@ -4,19 +4,6 @@
 <html lang="en">
     <head>
         <title>Choose a user</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            .container {                
-                width: 100vw;
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .justify-content-center {
-                width: 800px;
-            }
-        </style>
     </head>
     <body>
         <div class="container">    
@@ -37,9 +24,11 @@
                         <td>
                             <form id="form" action="{{ route('adduser')}}" method="POST">
                                 @csrf
+                                @if($user->id != auth()->user()->id)
                                 <input type=number value="{{$project_id}}" name="project_id" id="project_id" style="display:none">
                                 <input type=number value="{{$user->id}}" name="user_id" id="user_id" style="display:none">
                                 <button class="btn btn-primary" type="submit">Choose</button>
+                                @endif
                             </form>
                         </td>
                     </tr>
@@ -50,4 +39,4 @@
     </body>
 </html>
 @endif
-@endsection
+@endsection  

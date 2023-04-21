@@ -8,12 +8,11 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('project_users', function (Blueprint $table) {
+        //
+		Schema::create('project_users', function (Blueprint $table) {
             $table->string('project_id');
             $table->string('user_id');
             $table->timestamps();
@@ -22,11 +21,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('project_user');
+        //
+		Schema::dropIfExists('project_user');
     }
 };
